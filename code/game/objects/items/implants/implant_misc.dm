@@ -147,3 +147,19 @@
 	name = "implanter (internal syndicate radio)"
 	imp_type = /obj/item/implant/radio/syndicate
 
+/obj/item/implant/synthlink
+	name = "synth uplink implant"
+	desc = "Uplinks your current mind to a Synth."
+	icon_state = "emp"
+	uses = 1
+
+/obj/item/implant/synthlink/activate()
+	. = ..()
+	uses--
+	empulse(imp_in, 3, 5)
+	if(!uses)
+		qdel(src)
+
+/obj/item/implanter/synthlink
+	name = "implanter (synth uplink)"
+	imp_type = /obj/item/implant/synthlink
