@@ -9678,6 +9678,10 @@
 "atc" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/start/lawyer,
+/obj/item/paper_bin/carbon{
+	pixel_x = -3;
+	pixel_y = 7
+	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "atd" = (
@@ -39439,7 +39443,7 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/stamp/qm,
-/obj/item/paper_bin{
+/obj/item/paper_bin/carbon{
 	pixel_x = -3;
 	pixel_y = 7
 	},
