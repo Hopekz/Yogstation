@@ -33,7 +33,7 @@
 
 	if(!S)
 		S = sound(get_sfx(soundin))
-
+	// test
 	S.wait = 0 //No queue
 	S.channel = channel || open_sound_channel()
 	S.volume = vol
