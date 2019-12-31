@@ -587,3 +587,7 @@
 			return FALSE
 
 	return TRUE
+
+/proc/add_list_to_list(list/L, list/E)
+	L += null
+	L[L.len] = E
