@@ -88,6 +88,18 @@
 	required_temp = 374
 	mob_react = FALSE
 
+/datum/chemical_reaction/omegasoapification
+	name = "Omega Soap"
+	id = "omegasoap"
+	required_reagents = list(/datum/reagent/consumable/potato_juice = 10, /datum/reagent/consumable/ethanol/lizardwine = 10, /datum/reagent/monkey_powder = 10, /datum/reagent/drug/krokodil = 10, /datum/reagent/toxin/acid/nitracid = 10, /datum/reagent/baldium = 10, /datum/reagent/consumable/ethanol/hooch = 10, /datum/reagent/bluespace = 10, /datum/reagent/drug/pumpup = 10, /datum/reagent/consumable/space_cola = 10)
+	required_temp = 999
+	mob_react = FALSE
+
+/datum/chemical_reaction/omegasoapification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/soap/omega(location)
+
 /datum/chemical_reaction/soapification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
@@ -542,6 +554,17 @@
 	for(var/i = rand(1, created_volume), i <= created_volume, i++) // More lulz.
 		new /mob/living/simple_animal/pet/dog/corgi(location)
 	..()
+
+/datum/chemical_reaction/monkey_powder //monkey powder 
+	name = /datum/reagent/monkey_powder
+	id = /datum/reagent/monkey_powder
+	results = list(/datum/reagent/monkey_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment=2,/datum/reagent/liquidgibs = 1)
+
+/datum/chemical_reaction/monkey
+	name = "monkey"
+	id = "monkey"
+	required_reagents = list(/datum/reagent/monkey_powder = 30, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye

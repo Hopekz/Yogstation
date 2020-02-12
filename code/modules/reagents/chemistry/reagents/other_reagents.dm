@@ -1750,3 +1750,11 @@
 	color = "#ED2939"
 	taste_description = "upside down"
 	can_synth = FALSE
+
+//monkey powder heehoo
+/datum/reagent/monkey_powder
+	name = "Monkey Powder"
+	description = "Just add water!"
+	color = "#9C5A19"
+	taste_description = "bananas"
+	can_synth = TRUE

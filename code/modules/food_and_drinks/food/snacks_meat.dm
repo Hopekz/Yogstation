@@ -185,7 +185,7 @@
 	desc = "Just add water!"
 	icon_state = "monkeycube"
 	bitesize = 12
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/monkey_powder = 30)
 	filling_color = "#CD853F"
 	tastes = list("the jungle" = 1, "bananas" = 1)
 	foodtype = MEAT | SUGAR
