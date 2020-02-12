@@ -5,8 +5,7 @@
 	require the message server.
 */
 
-// A decorational representation of SSblackbox, usually placed alongside the message server.
-/obj/machinery/blackbox_recorder
+// A decorational representation of SSblackbox, usually placed alongside the message server. Also contains a traitor theft item./obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
@@ -18,6 +17,59 @@
 
 
 #define MESSAGE_SERVER_FUNCTIONING_MESSAGE "This is an automated message. The messaging system is functioning correctly."
+
+/obj/machinery/blackbox_recorder/Initialize()
+	. = ..()
+	var/stored = new /obj/item/blackbox(src)
+
+/obj/machinery/blackbox_recorder/attack_hand(mob/living/user)
+	. = ..()
+	if(stored)
+		user.put_in_hands(stored)
+		stored = null
+		to_chat(user, "<span class='notice'>You remove the blackbox from [src]. The tapes stop spinning.</span>")
+		update_icon()
+		return
+	else
+		to_chat(user, "<span class='warning'>It seems that the blackbox is missing...</span>")
+		return
+
+/obj/machinery/blackbox_recorder/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/blackbox))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || !user.transferItemToLoc(I, src))
+			to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] clicks [I] into [src]!</span>", \
+		"<span class='notice'>You press the device into [src], and it clicks into place. The tapes begin spinning again.</span>")
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+		stored = I
+		update_icon()
+		return ..()
+	return ..()
+
+/obj/machinery/blackbox_recorder/Destroy()
+	if(stored)
+		stored.forceMove(loc)
+		new /obj/effect/decal/cleanable/oil(loc)
+	return ..()
+
+/obj/machinery/blackbox_recorder/update_icon()
+	. = ..()
+	if(!stored)
+		icon_state = "blackbox_b"
+	else
+		icon_state = "blackbox"
+
+/obj/item/blackbox
+	name = "the blackbox"
+	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "blackcube"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 // The message server itself.
 /obj/machinery/telecomms/message_server

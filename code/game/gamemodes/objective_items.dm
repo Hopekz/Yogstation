@@ -166,6 +166,13 @@
 			return TRUE
 	return FALSE
 
+/datum/objective_item/steal/blackbox
+	name = "The Blackbox."
+	targetitem = /obj/item/blackbox
+	difficulty = 10
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician")
+
+
 /datum/objective_item/steal/slime
 	name = "an unused sample of slime extract."
 	targetitem = /obj/item/slime_extract
