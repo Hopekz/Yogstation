@@ -512,3 +512,21 @@
 
 /mob/living/simple_animal/slime/random/Initialize(mapload, new_colour, new_is_adult)
 	. = ..(mapload, pick(slime_colours), prob(50))
+
+
+/mob/living/simple_animal/slime/scp_999
+	name = "SCP-999"
+	docile = 1
+	verb_say = "happily blorbles"
+	verb_exclaim = "extatically blorbles"
+	maxHealth = 250
+	health = 250
+	healable = 1
+	..()
+
+/mob/living/simple_animal/slime/scp_999/Initialize()
+	. = ..()
+	src.transform *= 1.5 // supphosed to look 54 kg (120 lbs)
+	src.colour = "orange"
+	src.coretype = /obj/item/storage/box/hug
+	src.desc = "Subject’s temperament is best described as playful and dog-like"
