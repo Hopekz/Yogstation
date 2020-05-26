@@ -161,6 +161,9 @@
 	return 0
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
+	if(istype(I,/obj/item/crowbar/power/jimmy))
+		to_chat(user,"The [I] cannot pry tiles.")
+		return
 	return intact ? pry_tile(I, user) : FALSE
 
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)

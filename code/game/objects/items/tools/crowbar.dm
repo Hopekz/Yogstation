@@ -86,3 +86,16 @@
 	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(cutjaws)
+
+/obj/item/crowbar/power/jimmy
+	name = "airlock jimmy"
+	desc = "An pump assisted prying jimmy. An pump assisted airlock prying tool."
+	icon_state = "jimmy"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
+	toolspeed = 0.3 // pump tool . Pump it up by using it up to 0.8 
+
+
+/obj/item/crowbar/power/jimmy/attack_self(mob/user)
+	playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
