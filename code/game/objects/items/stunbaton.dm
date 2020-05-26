@@ -212,3 +212,15 @@
 /obj/item/melee/baton/cattleprod/baton_stun()
 	if(sparkler.activate())
 		..()
+
+
+/obj/item/melee/baton/cattleprod/tactical
+	name = "tactical stunbaton"
+	desc = "A nanotrasen tactical stunbaton. Able to be mounted on the back with its increased surface area."
+	preload_cell_type = /obj/item/stock_parts/cell/high
+	
+/obj/item/melee/baton/cattleprod/tactical/Initialize()
+	. = ..()
+	attack_self() // this stun baton starts on.
+	
+
