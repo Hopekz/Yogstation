@@ -99,3 +99,6 @@
 
 /obj/item/crowbar/power/jimmy/attack_self(mob/user)
 	playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+
+	toolspeed = 0.5
+
