@@ -20,7 +20,7 @@
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/crowbar/power/jimmy(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 
 /datum/outfit/ocpforce

@@ -131,3 +131,17 @@
 		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	update_icon()
 
+/obj/item/jawsoflife/jimmy
+	name = "airlock jimmy"
+	desc = "An pump assisted prying jimmy. An pump assisted airlock prying tool."
+	icon_state = "jimmy"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
+	toolspeed = 0.3 // pump tool . Pump it up by using it up to 0.8 
+	tool_behaviour = TOOL_CROWBAR
+
+/obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
+	playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+	toolspeed = 0.5
+	

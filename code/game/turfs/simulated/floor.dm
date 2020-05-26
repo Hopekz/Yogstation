@@ -161,7 +161,7 @@
 	return 0
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(istype(I,/obj/item/crowbar/power/jimmy))
+	if(istype(I,/obj/item/jawsoflife/jimmy))
 		to_chat(user,"The [I] cannot pry tiles.")
 		return
 	return intact ? pry_tile(I, user) : FALSE
