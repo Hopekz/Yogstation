@@ -140,7 +140,7 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // pump tool . Pump it up by using it up to 0.8 
 	tool_behaviour = TOOL_CROWBAR
-	var/is_pumping = FALSE // is the jimmy pumping at the moment?
+	var/is_pumping = FALSE // are we charging at the moment?
 
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
 	pump(user)
@@ -148,7 +148,7 @@
 	toolspeed = 0.5
 	
 /obj/item/jawsoflife/jimmy/proc/pump(mob/user))
-	if(toolspeed < 0.8)
+	if(toolspeed < 0.8 && user)
 		to_chat(user,"The [src] is fully pumped.")
 	else
 		if(!is_pumping)
@@ -156,10 +156,11 @@
 			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 			toolspeed = toolspeed + 0.1
 			addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
-			sleep(120)
-			is_pumping = FALSE
+			addtimer(CALLBACK(src, .proc/pump_cooldown), 12) // 1.2 second cooldown between pumps
 
-/obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user))
+/obj/item/jawsoflife/jimmy/proc/pump_powerdown()
 	if(toolspeed > 0.3)
 			toolspeed = toolspeed - 0.1
 
+/obj/item/jawsoflife/jimmy/proc/pump_cooldown()
+	is_pumping = FALSE
