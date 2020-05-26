@@ -154,10 +154,10 @@
 			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 			toolspeed = toolspeed + 0.1
 			addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
-			addtimer(CALLBACK(src, .proc/pump_cooldown), 12) // 1.2 second cooldown between pumps
+			addtimer(CALLBACK(src, .proc/pump_cooldown), 10) // 1.2 second cooldown between pumps
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown()
-	if(toolspeed < 0.3)
+	if(toolspeed > 0.3)
 		toolspeed = toolspeed - 0.1
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
