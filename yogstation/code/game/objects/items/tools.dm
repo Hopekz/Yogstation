@@ -133,15 +133,33 @@
 
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"
-	desc = "An pump assisted prying jimmy. An pump assisted airlock prying tool."
+	desc = "An pump assisted airlock prying jimmy."
 	icon_state = "jimmy"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // pump tool . Pump it up by using it up to 0.8 
 	tool_behaviour = TOOL_CROWBAR
+	var/is_pumping = FALSE // is the jimmy pumping at the moment?
 
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
+	pump(user)
 	playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 	toolspeed = 0.5
 	
+/obj/item/jawsoflife/jimmy/proc/pump(mob/user))
+	if(toolspeed < 0.8)
+		to_chat(user,"The [src] is fully pumped.")
+	else
+		if(!is_pumping)
+			is_pumping = TRUE
+			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+			toolspeed = toolspeed + 0.1
+			addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
+			sleep(120)
+			is_pumping = FALSE
+
+/obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user))
+	if(toolspeed > 0.3)
+			toolspeed = toolspeed - 0.1
+
