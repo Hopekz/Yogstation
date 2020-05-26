@@ -36,9 +36,9 @@
 	suit_store = /obj/item/gun/ballistic/automatic/wt550
 	head = /obj/item/clothing/head/helmet/sec // make flashlight version
 	l_pocket = /obj/item/flashlight/seclite
-	id = /obj/item/card/id/centcom // non removable ID
+	id = /obj/item/card/id/centcom 
 	implants = list(/obj/item/implant/mindshield)
-	back = /obj/item/melee/baton/cattleprod
+	back = /obj/item/melee/baton/cattleprod/tactical
 
 
 
