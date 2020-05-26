@@ -144,11 +144,9 @@
 
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
 	pump(user)
-	playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
-	toolspeed = 0.5
 	
-/obj/item/jawsoflife/jimmy/proc/pump(mob/user))
-	if(toolspeed < 0.8 && user)
+/obj/item/jawsoflife/jimmy/proc/pump(mob/user)
+	if(toolspeed > 0.8 && user)
 		to_chat(user,"The [src] is fully pumped.")
 	else
 		if(!is_pumping)
@@ -159,8 +157,8 @@
 			addtimer(CALLBACK(src, .proc/pump_cooldown), 12) // 1.2 second cooldown between pumps
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown()
-	if(toolspeed > 0.3)
-			toolspeed = toolspeed - 0.1
+	if(toolspeed < 0.3)
+		toolspeed = toolspeed - 0.1
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
