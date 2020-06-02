@@ -143,7 +143,6 @@
 	tool_behaviour = TOOL_CROWBAR
 	pryforce = 0.4
 	var/is_pumping = FALSE // are we charging at the moment?
-	var/on_cooldown = FALSE // is a cooldown happening?
 	var/pryforce_max
 	var/pryforce_min
 
@@ -164,18 +163,15 @@
 			is_pumping = TRUE
 			pryforce = pryforce + 0.1
 			if(user) // just in-case this is a proccall instead of being used by a mob
-				var/pressure_gage = (pryforce * 100)
-				to_chat(user,"You pump [src]. Pressure gage reads [pressure_gage]%.")
+				var/pressure_gage = (pryforce * 100) - 20
+				to_chat(user,"[src]'s pressure gage reads [pressure_gage]%.")
 			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/pump_cooldown), 10) // 1.2 second cooldown between pumps
-			addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
+			addtimer(CALLBACK(src, .proc/pump_cooldown), 5) // cooldown between pumps
+			addtimer(CALLBACK(src, .proc/pump_powerdown), 300) // lose gained power after 30 seconds
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown()
-	on_cooldown = FALSE
-	message_admins("downdown happening. start power [src.pryforce]")
 	if(src.pryforce > src.pryforce_min)
 		src.pryforce = (src.pryforce - 0.1)
-	message_admins("end pryforce [src.pryforce]")
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
