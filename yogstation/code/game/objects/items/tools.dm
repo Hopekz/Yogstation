@@ -178,7 +178,10 @@
 /obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
 	if(user) // just in-case this is a proccall instead of being used by a mob
 		var/pressure_gage = (pryforce * 100) - 20
-		to_chat(user,"[src]'s pressure gage reads [pressure_gage]%.")
+		var/emag_givaway_flavor = ""
+		if(pressure_gage < 101)
+			emag_givaway_flavor = pick("somehow ","unironically ","ironically ","actually ","maybe ")
+		to_chat(user,"[src]'s pressure gage [emag_givaway_flavor]reads [pressure_gage]%.")
 	return
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
