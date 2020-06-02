@@ -1183,8 +1183,10 @@
 		if(welded)
 			to_chat(user, "<span class='warning'>It's welded, it won't budge!</span>")
 			return
-
 		var/time_to_open = 5
+		var/obj/item/jawsoflife/R = I
+		if(R.pryforce)
+			time_to_open = (5 * (R.pryforce > 0 ? R.pryforce : 1))
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
 				time_to_open = 50

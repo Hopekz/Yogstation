@@ -14,6 +14,7 @@
 	force = 15
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
+	var/pryforce = 1 // the speed at which airlocks are pried open. Default is 1 .
 
 //jaws of life changing jaw code
 /obj/item/jawsoflife/attack_self(mob/user)
@@ -140,37 +141,41 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
 	tool_behaviour = TOOL_CROWBAR
+	pryforce = 0.4
 	var/is_pumping = FALSE // are we charging at the moment?
 	var/on_cooldown = FALSE // is a cooldown happening?
-	var/toolspeed_max
-	var/toolspeed_min
+	var/pryforce_max
+	var/pryforce_min
 
 /obj/item/jawsoflife/jimmy/Initialize()
 	. = ..()
-	toolspeed_min = toolspeed
-	toolspeed_max = (toolspeed * 3)
+	pryforce_min = pryforce
+	pryforce_max = (pryforce * 3)
 	
 
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
 	pump(user)
 	
 /obj/item/jawsoflife/jimmy/proc/pump(mob/user)
-	if(toolspeed > max_toolspeed && user)
+	if(pryforce > pryforce_max && user)
 		to_chat(user,"[src] is fully pumped.")
 	else
 		if(!is_pumping)
 			is_pumping = TRUE
-			toolspeed = toolspeed + 0.1
+			pryforce = pryforce + 0.1
 			if(user) // just in-case this is a proccall instead of being used by a mob
-				var/pressure_gage = ((toolspeed + 0.3) * 10)
+				var/pressure_gage = (pryforce * 100)
 				to_chat(user,"You pump [src]. Pressure gage reads [pressure_gage]%.")
 			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 			addtimer(CALLBACK(src, .proc/pump_cooldown), 10) // 1.2 second cooldown between pumps
+			addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown()
 	on_cooldown = FALSE
-	if(src.toolspeed > src.toolspeed_min)
-		src.toolspeed = (src.toolspeed - 0.1)
+	message_admins("downdown happening. start power [src.pryforce]")
+	if(src.pryforce > src.pryforce_min)
+		src.pryforce = (src.pryforce - 0.1)
+	message_admins("end pryforce [src.pryforce]")
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
@@ -179,19 +184,12 @@
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
 		return
-	
 	to_chat(user, "<span class='notice'>You swipe the emag on [src]'s pressure gage'. </span>")
 	obj_flags |= EMAGGED
-	toolspeed_max = (toolspeed_max * 1.4) // 1.26 on default setting
+	pryforce_max = (pryforce_max * 1.25) // 1.5 at default values
 	. = ..()
 
 /obj/item/jawsoflife/jimmy/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
 		. += "<span class='danger'>The pressure gage has been tampered with.</span>"
-
-/obj/item/jawsoflife/jimmy/process()
-	. = ..()
-	if(!on_cooldown)
-		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/pump_powerdown), 100) // lose gained power after 10 seconds
