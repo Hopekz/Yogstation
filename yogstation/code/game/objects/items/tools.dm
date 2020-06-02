@@ -162,16 +162,24 @@
 		if(!is_pumping)
 			is_pumping = TRUE
 			pryforce = pryforce + 0.1
-			if(user) // just in-case this is a proccall instead of being used by a mob
-				var/pressure_gage = (pryforce * 100) - 20
-				to_chat(user,"[src]'s pressure gage reads [pressure_gage]%.")
+			show_gage(user)
 			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 			addtimer(CALLBACK(src, .proc/pump_cooldown), 5) // cooldown between pumps
-			addtimer(CALLBACK(src, .proc/pump_powerdown), 300) // lose gained power after 30 seconds
+			addtimer(CALLBACK(src, .proc/pump_powerdown(mob/user)), 300) // lose gained power after 30 seconds
+	return
 
-/obj/item/jawsoflife/jimmy/proc/pump_powerdown()
+/obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user)
 	if(src.pryforce > src.pryforce_min)
 		src.pryforce = (src.pryforce - 0.1)
+		if(pryforce == (pryforce_min + 0.1))
+			show_gage(user)
+	return
+
+/obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
+	if(user) // just in-case this is a proccall instead of being used by a mob
+		var/pressure_gage = (pryforce * 100) - 20
+		to_chat(user,"[src]'s pressure gage reads [pressure_gage]%.")
+	return
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
