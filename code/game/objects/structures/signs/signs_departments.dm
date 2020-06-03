@@ -73,6 +73,37 @@
 /obj/structure/sign/departments/medbay/alt
 	icon_state = "bluecross2"
 
+
+/obj/structure/sign/departments/minsky/command
+	name = "Command Deck"
+	desc = "A sign labeling the station's command deck. The good idea fairy lives around here."
+	icon_state = "minskycommand"
+
+/obj/structure/sign/departments/minsky/command/evac
+	name = "Evacuation Area"
+	desc = "A sign labeling the station's evacuation area. No guarantees."
+	icon_state = "minskyevac"
+
+/obj/structure/sign/departments/minsky/command/space
+	name = "Leads to Space"
+	desc = "A sign labeling an exterior access. Authorized personnel only."
+	icon_state = "minskyspace"
+
+/obj/structure/sign/departments/minsky/command/hop
+	name = "Head of Personnel's Office"
+	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
+	icon_state = "minskyhop"
+
+/obj/structure/sign/departments/minsky/command/bridge
+	name = "Bridge Deck"
+	desc = "A sign labeling the station's bridge."
+	icon_state = "minskybridge"
+
+/obj/structure/sign/departments/minsky/command/charge
+	name = "Charging Module"
+	desc = "A sign labeling a borge charging module. May not be fit for human habitation"
+	icon_state = "minskycharge"
+
 /obj/structure/sign/departments/minsky/research/research
 	name = "Research Department"
 	desc = "A sign labeling where the research and development of new technologies takes place. It's not an experiment if you know what's going on."
@@ -119,13 +150,13 @@
 	icon_state = "minskymedicb"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning1
-	name = "Cloning Division"
-	desc = "A sign labeling the cloning division of the station. Your last hope."
+	name = "Cloning Ward"
+	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskyclone"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning2
-	name = "Cloning Division"
-	desc = "A sign labeling the cloning division of the station. Your last hope."
+	name = "Cloning Ward"
+	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskycloneb"
 
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical1
@@ -140,12 +171,12 @@
 
 /obj/structure/sign/departments/minsky/medical/virology/virology1
 	name = "Virology Division"
-	desc = "A sign labeling the virology division of the station. Free hugs!!!."
+	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyviro"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology2
 	name = "Virology Division"
-	desc = "A sign labeling the virology division of the station. Free hugs!!!."
+	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyvirob"
 
 /obj/structure/sign/departments/minsky/security/security
@@ -165,7 +196,7 @@
 
 /obj/structure/sign/departments/minsky/supply/janitorial
 	name = "Janitorial Division"
-	desc = "A sign labeling the janitorial closet of the station. Clean up after yourself.... please."
+	desc = "A sign labeling the janitorial closet of the station. Clean up after yourself... please."
 	icon_state = "minskyjani"
 
 /obj/structure/sign/departments/minsky/supply/hydroponics

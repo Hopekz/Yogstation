@@ -60,8 +60,6 @@ Difficulty: Hard
 	var/enrage_time = 70
 	var/revving_charge = FALSE
 	internal_type = /obj/item/gps/internal/bubblegum
-	medal_type = BOSS_MEDAL_BUBBLEGUM
-	score_type = BUBBLEGUM_SCORE
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	deathsound = 'sound/magic/enter_blood.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/triple_charge,
@@ -105,12 +103,21 @@ Difficulty: Hard
 	chosen_message = "<span class='colossus'>You are now warping to blood around your clicked position.</span>"
 	chosen_attack_num = 4
 
+/mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed, var/list/force_grant)
+	.=..()
+	if(!(flags_1 & ADMIN_SPAWNED_1))
+		for(var/mob/living/L in view(7,src))
+			if(L.client)
+				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
+
+
+
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
 	if(charging)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
+	anger_modifier = clamp(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(client)
@@ -408,11 +415,6 @@ Difficulty: Hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegum/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/grant_achievement(medaltype,scoretype)
-	. = ..()
-	if(.)
-		SSshuttle.shuttle_purchase_requirements_met |= "bubblegum"
-
 /mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon)
 	if(!charging)
 		..()
@@ -516,9 +518,7 @@ Difficulty: Hard
 	alpha = 127.5
 	crusher_loot = null
 	loot = null
-	medal_type = null
-	score_type = null
-	deathmessage = "Explodes into a pool of blood!"
+	deathmessage = "explodes into a pool of blood!"
 	deathsound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
 

@@ -101,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 80px;
+	right: 135px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -131,13 +131,13 @@ a.popt {text-decoration: none;}
 }
 #userBar .subCell:hover {background: #ccc;}
 #userBar .toggle {
-	width: 40px;
+	width: 45px;
     background: #ccc;
     border-top: 0;
     float: right;
     text-align: center;
 }
-#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub {clear: both; display: none; width: 180px;}
 #userBar .sub.scroll {overflow-y: scroll;}
 #userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
 #userBar .sub span {
@@ -276,6 +276,7 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
+.dronesay 				{color: #ffbf00; background-color: #000000; display: block;}
 .radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
 .commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}

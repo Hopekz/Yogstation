@@ -128,6 +128,10 @@
 #define NECK		(1<<11)
 #define FULL_BODY	(~0)
 
+//defines for the index of hands
+#define LEFT_HANDS 1
+#define RIGHT_HANDS 2
+
 //flags for female outfits: How much the game can safely "take off" the uniform without it looking weird
 #define NO_FEMALE_UNIFORM			0
 #define FEMALE_UNIFORM_FULL			1
@@ -192,7 +196,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/tank/internals/emergency_oxygen,
 	/obj/item/tank/internals/plasmaman)))
 
@@ -214,7 +218,7 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/lighter,

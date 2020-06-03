@@ -56,11 +56,9 @@
 	if (!network)
 		user.unset_machine()
 		CRASH("No camera network")
-		return
 	if (!(islist(network)))
 		user.unset_machine()
 		CRASH("Camera network is not a list")
-		return
 	if(..())
 		user.unset_machine()
 		return
@@ -214,7 +212,7 @@
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
-	desc = "Damn, they better have the /tg/ channel on these things."
+	desc = "Damn, they better have the Yogs Channel on these things... Nope, just the /tg/ channel! Aww..."
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list("thunder")

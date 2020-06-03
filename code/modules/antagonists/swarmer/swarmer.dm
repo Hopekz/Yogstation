@@ -18,6 +18,7 @@
 	mob_name = "a swarmer"
 	death = FALSE
 	roundstart = FALSE
+	short_desc = "You are a swarmer, a weapon of a long dead civilization."
 	flavour_text = {"
 	<b><FONT color='red'>You are to allow other beings to leave peacefully on the shuttle without interference. The station and its resources are your only concern.</font></b>
 	<b>You are a swarmer, a weapon of a long dead civilization. Until further orders from your original masters are received, you must continue to consume and replicate.</b>
@@ -122,10 +123,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudstat"
 
-/mob/living/simple_animal/hostile/swarmer/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Resources:",resources)
+/mob/living/simple_animal/hostile/swarmer/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]"
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()

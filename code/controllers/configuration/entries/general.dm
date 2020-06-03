@@ -210,7 +210,7 @@
 	config_entry_value = "https://forums.yogstation.net/index.php?pages/rules/" // yogs - Old Tickets
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/yogstation13/Yogstation-TG" // yogs - Old Tickets
+	config_entry_value = "https://github.com/yogstation13/Yogstation" // yogs - Old Tickets
 
 /datum/config_entry/string/roundstatsurl
 
@@ -488,3 +488,5 @@
 /datum/config_entry/flag/reopen_roundstart_suicide_roles_command_report
 
 /datum/config_entry/flag/protect_AI_from_traitor
+
+/datum/config_entry/flag/everyone_is_donator

@@ -1,7 +1,7 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
 #define DB_MAJOR_VERSION 5
-#define DB_MINOR_VERSION 2
+#define DB_MINOR_VERSION 4
 
 
 //Timing subsystem
@@ -48,6 +48,7 @@
 
 #define INIT_ORDER_TITLE			100
 #define INIT_ORDER_GARBAGE			99
+#define INIT_ORDER_STATPANELS		98
 #define INIT_ORDER_DBCORE			95
 #define INIT_ORDER_BLACKBOX			94
 #define INIT_ORDER_SERVER_MAINT		93
@@ -80,6 +81,7 @@
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
 #define INIT_ORDER_PERSISTENCE		-95
+#define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
@@ -124,7 +126,7 @@
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
 
-
+// Truly disgusting, TG. Truly disgusting.
 
 #define COMPILE_OVERLAYS(A)\
 	if (TRUE) {\
@@ -149,4 +151,6 @@
 			}\
 		}\
 		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		if(isturf(A)){SSdemo.mark_turf(A);}\
+		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
 	}

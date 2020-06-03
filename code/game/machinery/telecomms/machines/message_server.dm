@@ -121,15 +121,26 @@
 	return copy
 
 // PDA signal datum
+/datum/signal/subspace/messaging/pda
+	var/datum/language/lang // Stores what language the message was written in.
+
+/datum/signal/subspace/messaging/pda/New(init_source,init_data)
+	..()
+	lang = data["language"] || /datum/language/common
+
 /datum/signal/subspace/messaging/pda/proc/format_target()
 	if (length(data["targets"]) > 1)
 		return "Everyone"
 	return data["targets"][1]
 
-/datum/signal/subspace/messaging/pda/proc/format_message()
+/datum/signal/subspace/messaging/pda/proc/format_message(mob/living/listener)
+	var/msg = data["message"]
+	if(istype(listener) && !listener.has_language(lang))
+		var/datum/language/langue = GLOB.language_datum_instances[lang]
+		msg = langue.scramble(msg)
 	if (logged && data["photo"])
-		return "\"[data["message"]]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
-	return "\"[data["message"]]\""
+		return "\"[msg]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
+	return "\"[msg]\""
 
 /datum/signal/subspace/messaging/pda/broadcast()
 	if (!logged)  // Can only go through if a message server logs it
@@ -170,7 +181,7 @@
 	if(href_list["photo"])
 		var/mob/M = usr
 		M << browse_rsc(picture.picture_image, "pda_photo.png")
-		M << browse("<html><head><title>PDA Photo</title></head>" \
+		M << browse("<html><head><meta charset='UTF-8'><title>PDA Photo</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='pda_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' />" \
 		+ "</body></html>", "window=pdaphoto;size=[picture.psize_x]x[picture.psize_y];can-close=true")

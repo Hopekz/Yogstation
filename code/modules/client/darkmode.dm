@@ -46,6 +46,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "output", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "outputwindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
 	winset(src, "outputwindow", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "statbrowser", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "statbrowser", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "statwindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
 	winset(src, "statwindow", "text-color = #eaeaea;text-color = #000000")
 	winset(src, "stat", "background-color = [COLOR_DARKMODE_DARKBACKGROUND];background-color = #FFFFFF")
@@ -65,6 +67,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "asset_cache_browser", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "tooltip", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
 	winset(src, "tooltip", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+
+	src << output(null, "statbrowser:set_light_theme");
 
 /client/proc/force_dark_theme() //Inversely, if theyre using white theme and want to swap to the superior dark theme, let's get WINSET() ing
 	//Main windows
@@ -96,6 +100,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "output", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "outputwindow", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
 	winset(src, "outputwindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "statbrowser", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
+	winset(src, "statbrowser", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "statwindow", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
 	winset(src, "statwindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "stat", "background-color = #FFFFFF;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
@@ -116,17 +122,4 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "tooltip", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
 	winset(src, "tooltip", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 
-
-/datum/asset/simple/goonchat
-	verify = FALSE
-	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'tgui/assets/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'code/modules/goonchat/browserassets/css/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
-		"browserOutput_white.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
-	)
+	src << output(null, "statbrowser:set_dark_theme");

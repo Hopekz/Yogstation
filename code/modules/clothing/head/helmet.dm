@@ -53,6 +53,10 @@
 /obj/item/clothing/head/helmet/sec
 	can_flashlight = TRUE
 
+/obj/item/clothing/head/helmet/sec/attack_self(mob/user)
+	. = ..()
+	toggle_helmlight()
+
 /obj/item/clothing/head/helmet/sec/attackby(obj/item/I, mob/user, params)
 	if(issignaler(I))
 		var/obj/item/assembly/signaler/S = I
@@ -107,6 +111,14 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	dog_fashion = null
+
+/obj/item/clothing/head/helmet/riot/raised/Initialize()
+	. = ..()
+	up = !up
+	flags_1 ^= visor_flags
+	flags_inv ^= visor_flags_inv
+	flags_cover ^= visor_flags_cover
+	icon_state = "[initial(icon_state)][up ? "up" : ""]"
 
 /obj/item/clothing/head/helmet/attack_self(mob/user)
 	if(can_toggle && !user.incapacitated())
@@ -397,3 +409,17 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
+		
+/obj/item/clothing/head/helmet/stormtrooper
+	name = "Storm Trooper Helmet"
+	desc = "Battle Helmet from a long lost empire"
+	icon_state = "stormtrooperhelmet"
+	item_state = "stormtrooperhelmet"
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 40,"energy" = 30, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 50, "acid" = 50)
+	flags_inv = HIDEEARS|HIDEHAIR
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	strip_delay = 60
+	flags_cover = HEADCOVERSEYES

@@ -43,7 +43,7 @@
 	var/msgTitle = input["announce"]
 	var/author = input["author"]
 	var/id = input["id"]
-	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
 	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
 	for(var/client/C in GLOB.clients)
@@ -91,7 +91,7 @@
 /datum/world_topic/verify/Run(list/input)
 	var/id = input["verify"]
 	var/ckey = input["ckey"]
-	var/lowerparams = replacetext(lowertext(ckey), " ", "") // Fuck spaces
+	var/lowerparams = ckey(ckey) // Fuck spaces
 	if(SSdiscord.account_link_cache[lowerparams]) // First if they are in the list, then if the ckey matches
 		if(SSdiscord.account_link_cache[lowerparams] == "[SSdiscord.id_clean(id)]") // If the associated ID is the correct one
 			SSdiscord.link_account(lowerparams)
