@@ -149,17 +149,29 @@
 
 /obj/item/implant/synthlink
 	name = "synth uplink implant"
-	desc = "Uplinks your current mind to a Synth."
+	desc = "Uploads your current mind to a Synth off station. Arrive on the station as a new arrival"
 	icon_state = "emp"
 	uses = 1
+	var/uploading = FALSE // are you uploading your mind?
 
 /obj/item/implant/synthlink/activate()
 	. = ..()
-	uses--
-	empulse(imp_in, 3, 5)
-	if(!uses)
-		qdel(src)
-
+	uploading = TRUE
+	to_chat(imp_in, "<span class='danger'>Your mind is being uploaded via the synth uplink implant!</span>")
+	if(do_after(imp_in, 50, FALSE, target = imp_in , stayStill = FALSE) && !uploading)
+		uses--
+		var/mob/living/carbon/human/snyth_spawn = new()
+		snyth_spawn.set_species(/datum/species/synth)
+		SSjob.GiveRandomJob(snyth_spawn)
+		SSjob.SendToLateJoin(snyth_spawn)
+		var/datum/preferences/A = new() //Randomize appearance for the synth.
+		A.copy_to(snyth_spawn)
+		snyth_spawn.dna.update_dna_identity()
+		imp_in.mind.transfer_to(snyth_spawn)
+		return snyth_spawn
+	else
+		uploading = FALSE
+	
 /obj/item/implanter/synthlink
 	name = "implanter (synth uplink)"
 	imp_type = /obj/item/implant/synthlink
