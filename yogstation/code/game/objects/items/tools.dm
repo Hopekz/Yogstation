@@ -98,6 +98,13 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
+	var/icon_state_neutral // store neutral icon state
+	var/icon_state_spin = "drill_screw_spin" // icon state of the spinning drill
+	var/spinning = FALSE // is the drill currently spinning?
+
+/obj/item/handdrill/Initialize()
+	. = ..()
+	icon_state_neutral = icon_state
 
 /obj/item/handdrill/attack_self(mob/user)
 	if (tool_behaviour == TOOL_SCREWDRIVER)
@@ -112,6 +119,7 @@
 /obj/item/handdrill/proc/transform_wrench(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
 	icon_state = "drill_bolt"
+	icon_state_spin = "drill_bolt_spin"
 	tool_behaviour = TOOL_WRENCH
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
@@ -123,6 +131,7 @@
 /obj/item/handdrill/proc/transform_screwdriver(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
 	icon_state = "drill_screw"
+	icon_state_spin = "drill_screw_spin"
 	tool_behaviour = TOOL_SCREWDRIVER
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
@@ -131,3 +140,19 @@
 		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	update_icon()
 
+/obj/item/handdrill/proc/animate_spin()
+		icon_state = (spinning ? icon_state_spin : icon_state_neutral)
+
+/obj/item/handdrill/proc/animate_spin_end()
+	spinning = FALSE
+	animate_spin()
+
+/obj/item/handdrill/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(spinning)
+		return
+	spinning = TRUE
+	animate_spin()
+	addtimer(CALLBACK(src, .proc/animate_spin_end), 40)
+	
+	
