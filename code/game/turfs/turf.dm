@@ -84,8 +84,10 @@
 
 	ComponentInitialize()
 
-	if(prob(0.1)) // DOLPHINS!
-		new /mob/living/simple_animal/hostile/retaliate/dolphin
+	if(prob(0.1)) // seaweed!
+		new /obj/structure/flora/bush
+		if(prob(0.1)) // DOLPHINS!
+			new /mob/living/simple_animal/hostile/retaliate/dolphin
 
 	return INITIALIZE_HINT_NORMAL
 
