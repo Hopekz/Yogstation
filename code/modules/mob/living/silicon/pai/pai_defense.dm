@@ -8,7 +8,7 @@
 		return
 	take_holo_damage(50/severity)
 	Paralyze(400/severity)
-	silent = max(30/severity, silent)
+	silent = max(20/severity, silent)
 	if(holoform)
 		fold_in(force = TRUE)
 	//Need more effects that aren't instadeath or permanent law corruption.
@@ -50,7 +50,7 @@
 			user.do_attack_animation(src)
 			if (user.name == master)
 				visible_message("<span class='notice'>Responding to its master's touch, [src] disengages its holochassis emitter, rapidly losing coherence.</span>")
-				spawn(10)
+				if(do_after(user, 1 SECONDS, TRUE, src))
 					fold_in()
 					if(user.put_in_hands(card))
 						user.visible_message("<span class='notice'>[user] promptly scoops up [user.p_their()] pAI's card.</span>")
@@ -58,7 +58,7 @@
 				visible_message("<span class='danger'>[user] stomps on [src]!.</span>")
 				take_holo_damage(2)
 
-/mob/living/silicon/pai/bullet_act(obj/item/projectile/Proj)
+/mob/living/silicon/pai/bullet_act(obj/projectile/Proj)
 	if(Proj.stun)
 		fold_in(force = TRUE)
 		src.visible_message("<span class='warning'>The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!</span>")
@@ -95,8 +95,11 @@
 /mob/living/silicon/pai/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	return FALSE
 
-/mob/living/silicon/pai/adjustStaminaLoss(amount, updating_health)
-	take_holo_damage(amount * 0.25)
+/mob/living/silicon/pai/adjustStaminaLoss(amount, updating_health, forced = FALSE)
+	if(forced)
+		take_holo_damage(amount)
+	else
+		take_holo_damage(amount * 0.25)
 
 /mob/living/silicon/pai/getBruteLoss()
 	return emittermaxhealth - emitterhealth
