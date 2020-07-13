@@ -49236,14 +49236,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"bIC" = (
-/obj/structure/table/wood,
-/obj/machinery/light/small,
-/obj/item/clothing/glasses/regular/hipster{
-	name = "Hipster Glasses"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/theatre)
 "bID" = (
 /obj/effect/landmark/start/scientist,
 /obj/effect/turf_decal/stripes/line{
@@ -52493,12 +52485,6 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bOS" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bOT" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -54055,18 +54041,6 @@
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 2
-	},
-/area/crew_quarters/kitchen)
-"bRQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -82378,22 +82352,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/supermatter)
-"djz" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"djC" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "djM" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -83587,6 +83545,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"jtr" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 2
+	},
+/area/crew_quarters/kitchen)
 "jtW" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance";
@@ -83999,6 +83966,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"orh" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "oub" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
@@ -84147,6 +84127,15 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
+"qgh" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small,
+/obj/item/clothing/glasses/regular/hipster{
+	name = "Hipster Glasses"
+	},
+/obj/item/phone/banana,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "qhe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -84277,6 +84266,16 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"rQn" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "rSL" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
@@ -84649,6 +84648,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"wTi" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -95441,9 +95451,9 @@ aDb
 aDb
 aVu
 aWU
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -95451,9 +95461,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 bxu
 aRA
@@ -97240,9 +97250,9 @@ aSL
 aDb
 aGW
 aSK
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -97250,9 +97260,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 buD
 aRA
@@ -118083,7 +118093,7 @@ bLJ
 bLK
 bOR
 bQB
-bRQ
+jtr
 bST
 bUf
 bVs
@@ -118338,7 +118348,7 @@ bBT
 bKf
 bLK
 bLK
-bOS
+rQn
 bQB
 bRR
 bST
@@ -122446,7 +122456,7 @@ bhO
 bCc
 bkN
 blq
-bIC
+qgh
 byN
 bLR
 bnY
