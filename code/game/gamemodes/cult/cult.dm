@@ -8,7 +8,7 @@
 	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/cult)
+	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)
@@ -102,6 +102,12 @@
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 
 	. = ..()
+
+/datum/game_mode/cult/check_finished(force_ending)
+	if (..())
+		return TRUE
+
+	return 1 - main_cult.check_sacrifice_status()
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
