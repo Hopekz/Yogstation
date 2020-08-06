@@ -11,7 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR,HAIR,LIPS)
+	species_traits = list(EYECOLOR,HAIR,LIPS,NOBLOOD)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -21,6 +21,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
+	mutant_heart = /obj/item/stock_parts/cell/crap/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	var/charge = PRETERNIS_LEVEL_FULL
@@ -161,3 +162,25 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 1)
 	else
 		H.clear_alert("preternis_charge")
+
+/// Preternis battery organ handling
+/obj/item/stock_parts/cell/crap/preternis
+	name = "\improper Nanotrasen brand shielded rechargeable heart battery"
+	desc = "A shielded battery made by nanotrasen for use inside of Preterni. Will not fully discharge when hit with an EMP."
+	maxcharge = 550
+	materials = list(MAT_METAL = 200,MAT_GLASS=40)
+
+/obj/item/stock_parts/cell/crap/preternis/emag_act(mob/user)
+	if(!EMAGGED)
+		to_chat(user,"You sabotage the battery removing its ability to shield from an EMP")
+		obj_flags |= EMAGGED
+	. = ..()
+	
+/// Normal behavior = EMP doesn't take charge below 40 .   When emagged EMP will kill the battery.
+/obj/item/stock_parts/cell/crap/preternis/emp_act(severity)
+	if(EMAGGED)
+		charge = 0// You are dead!
+	else
+		charge = clamp((charge-(10000/severity)),40,maxcharge)
+	. = ..()
+
