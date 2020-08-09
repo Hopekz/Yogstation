@@ -80,6 +80,8 @@
 	var/overload_maxhealth = 0
 	var/silent = FALSE
 	var/brightness_power = 5
+	
+	var/maintenance = FALSE
 
 /mob/living/silicon/pai/can_unbuckle()
 	return FALSE
@@ -288,10 +290,15 @@
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()
 	user.set_machine(src)
+
+	// warnings and return checks
+	if(istype(W, /obj/item/encryptionkey && pai.encryptmod == FALSE))
+		to_chat(user, "Encryption Key ports not configured.")
+		return
+
+	// pAI interact functions
 	if(pai.encryptmod == TRUE)
 		if(W.tool_behaviour == TOOL_SCREWDRIVER)
 			pai.radio.attackby(W, user, params)
-		else if(istype(W, /obj/item/encryptionkey))
+		if(istype(W, /obj/item/encryptionkey))
 			pai.radio.attackby(W, user, params)
-	else
-		to_chat(user, "Encryption Key ports not configured.")
