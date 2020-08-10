@@ -16,7 +16,7 @@
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
 
-	var/ram = 100	// Used as currency to purchase different abilities
+	var/ram = 0	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
 	var/obj/item/paicard/card	// The card we inhabit
@@ -80,8 +80,11 @@
 	var/overload_maxhealth = 0
 	var/silent = FALSE
 	var/brightness_power = 5
-	
+
+	/// Are we in maintenance mode?
 	var/maintenance = FALSE
+	/// what module are we?
+	var/module = PAI_BASIC
 
 /mob/living/silicon/pai/can_unbuckle()
 	return FALSE
@@ -130,6 +133,121 @@
 
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, .proc/emittercool), 600)
+	finalize_class(module)
+
+/// Finalize switching classes. Run this after a main change. No argument here means we ensure that the correct values are set for current class.
+/mob/living/silicon/pai/finalize_class(class)
+	if(!class)
+		class = module 
+
+	/// here we ensure all the values are set correctly per class just in-case something didn't change when needed.
+
+	switch(module)
+		if(PAI_BASIC)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"photography module",
+				"loudness booster",
+				"universal translator"
+
+			)
+		if(PAI_ENG)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"atmosphere sensor",
+				"remote signaller",
+				"host scan",
+				"door jack",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_SEC)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"photography module",
+				"security records",
+				"host scan",
+				"security HUD",
+				"door jack",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_SCI)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"atmosphere sensor",
+				"remote signaller",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_SERVICE)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"photography module",
+				"camera zoom",
+				"loudness booster",
+				"newscaster",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_CARGO)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"photography module",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_MINING)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"host scan",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_HEAD)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"remote signaller",
+				"security records",
+				"medical records",
+				"medical HUD",
+				"security HUD",
+				"door jack",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_CLOWN)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"photography module",
+				"door jack",
+				"encryption keys",
+				"universal translator"
+			)
+		if(PAI_MED)
+			software = list(
+				"crew manifest",
+				"digital messenger",
+				"medical records",
+				"host scan",
+				"medical HUD",
+				"encryption keys",
+				"universal translator"
+			)
+		
+		desc = "A [module] pAI mobile hard-light holographics emitter."
+		/// here we set the generic values modified by the previous step if needed.
+		
+
 
 /mob/living/silicon/pai/Life()
 	if(hacking)
@@ -302,3 +420,32 @@
 			pai.radio.attackby(W, user, params)
 		if(istype(W, /obj/item/encryptionkey))
 			pai.radio.attackby(W, user, params)
+
+
+/// here we store all the pAI classes
+/mob/living/silicon/pai/basic
+	module = PAI_BASIC
+
+/mob/living/silicon/pai/eng
+	module = PAI_ENG
+
+/mob/living/silicon/pai/sec
+	module = PAI_SEC
+
+/mob/living/silicon/pai/sci
+	module = PAI_SCI
+
+/mob/living/silicon/pai/service
+	module = PAI_SERVICE
+
+/mob/living/silicon/cargo
+	module = PAI_CARGO
+
+/mob/living/silicon/pai/mining
+	module = PAI_MINING
+
+/mob/living/silicon/pai/head
+	module = PAI_HEAD
+
+/mob/living/silicon/pai/clown
+	module = PAI_CLOWN
