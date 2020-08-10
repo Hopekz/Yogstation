@@ -449,3 +449,6 @@
 
 /mob/living/silicon/pai/clown
 	module = PAI_CLOWN
+
+/mob/living/silicon/pai/med
+	module = PAI_MED
