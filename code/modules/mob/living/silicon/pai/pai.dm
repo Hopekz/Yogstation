@@ -136,7 +136,7 @@
 	finalize_class(module)
 
 /// Finalize switching classes. Run this after a main change. No argument here means we ensure that the correct values are set for current class.
-/mob/living/silicon/pai/finalize_class(class)
+/mob/living/silicon/pai/proc/finalize_class(class)
 	if(!class)
 		class = module 
 
@@ -243,9 +243,8 @@
 				"encryption keys",
 				"universal translator"
 			)
-		
-		desc = "A [module] pAI mobile hard-light holographics emitter."
-		/// here we set the generic values modified by the previous step if needed.
+	/// here we set the generic values modified by the previous step if needed.	
+	desc = "A [module] pAI mobile hard-light holographics emitter."
 		
 
 
@@ -438,7 +437,7 @@
 /mob/living/silicon/pai/service
 	module = PAI_SERVICE
 
-/mob/living/silicon/cargo
+/mob/living/silicon/pai/cargo
 	module = PAI_CARGO
 
 /mob/living/silicon/pai/mining
