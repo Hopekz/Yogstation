@@ -336,10 +336,10 @@
 	. = ..()
 
 /obj/item/twohanded/dualsaber/update_icon()
+	icon_state = "dualsaber0"
+	src.cut_overlays()
 	if(wielded)
-		icon_state = "dualsaber[item_color][wielded]"
-	else
-		icon_state = "dualsaber0"
+		src.add_overlay("dualsaber1").item_color(light_color)
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 
 /obj/item/twohanded/dualsaber/attack(mob/target, mob/living/carbon/human/user)
