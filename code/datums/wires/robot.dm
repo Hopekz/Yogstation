@@ -1,6 +1,5 @@
 /datum/wires/robot
 	holder_type = /mob/living/silicon/robot
-	proper_name = "Cyborg"
 	randomize = TRUE
 
 /datum/wires/robot/New(atom/holder)

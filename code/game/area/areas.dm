@@ -85,9 +85,6 @@
 
 	var/minimap_color = null // if null, chooses random one
 
-	/// Wire assignment for airlocks in this area
-	var/airlock_wires = /datum/wires/airlock
-
 /**
   * A list of teleport locations
   *

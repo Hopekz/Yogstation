@@ -88,12 +88,6 @@
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
-/datum/reagent/polysmorphblood
-	name = "Polysmorph blood"
-	color = "#96BB00"
-	description = "The blood of a polysmorph"
-	taste_description = "acidic"
-
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
@@ -323,7 +317,7 @@
 	color = "#1f8016"
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
-	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
+	if(IS_HERETIC(M))
 		M.drowsyness = max(M.drowsyness-5, 0)
 		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-10, FALSE)

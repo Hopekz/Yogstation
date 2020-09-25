@@ -1,6 +1,5 @@
 /datum/wires/syndicatebomb
 	holder_type = /obj/machinery/syndicatebomb
-	proper_name = "Syndicate Explosive Device"
 	randomize = TRUE
 
 /datum/wires/syndicatebomb/New(atom/holder)

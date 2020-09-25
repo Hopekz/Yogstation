@@ -254,19 +254,14 @@
 				if(!istype(X,/obj/item/forbidden_book))
 					continue
 				var/obj/item/forbidden_book/FB = X
-				FB.charge += 2
+				FB.charge++
 				break
 
 		if(!LH.target)
 			var/datum/objective/A = new
 			A.owner = user.mind
-			var/list/targets = list()
-			for(var/i in 0 to 3)
-				var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
-				if(!targeted)
-					break
-				targets[targeted.current.real_name] = targeted.current
-			LH.target = targets[input(user,"Choose your next target","Target") in targets]
+			var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
+			LH.target = targeted.current
 			qdel(A)
 			if(LH.target)
 				to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")

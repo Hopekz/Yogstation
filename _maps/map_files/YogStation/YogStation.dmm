@@ -26877,16 +26877,6 @@
 /obj/machinery/vending/cart,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"bsd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bsf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -28705,6 +28695,12 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter)
+"bws" = (
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/plating,
+/area/teleporter)
 "bwt" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
@@ -29669,6 +29665,16 @@
 /area/security/checkpoint/supply)
 "byU" = (
 /obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"byW" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "byZ" = (
@@ -44554,12 +44560,6 @@
 "hoc" = (
 /turf/closed/wall,
 /area/security/checkpoint/service)
-"hoA" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "hoP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -46719,19 +46719,6 @@
 /obj/item/clothing/gloves/color/fyellow,
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"jdH" = (
-/obj/structure/rack,
-/obj/item/tank/internals/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/machinery/button/door{
-	id = "tele";
-	name = "Public Teleporter Access Control";
-	pixel_x = -6;
-	pixel_y = -24;
-	req_access_txt = "17"
-	},
-/turf/open/floor/plating,
-/area/teleporter)
 "jdO" = (
 /turf/closed/wall,
 /area/medical/storage)
@@ -56971,19 +56958,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"rrL" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "tele";
-	name = "Public Teleporter Access Control";
-	pixel_x = -6;
-	pixel_y = 24;
-	req_access_txt = "17"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "rsV" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -57735,14 +57709,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
-"sbf" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/poddoor{
-	id = "tele";
-	name = "Public Teleporter Access"
-	},
-/turf/open/floor/plating,
-/area/teleporter)
 "sdg" = (
 /obj/machinery/door/poddoor{
 	id = "QMLoaddoor";
@@ -97553,7 +97519,7 @@ blZ
 aNO
 bwq
 bqH
-mUt
+aJq
 aJq
 aXf
 bCv
@@ -97809,10 +97775,10 @@ bsl
 bmb
 buW
 bwt
-sbf
-hoA
-aJq
-bsd
+bqH
+aLY
+aLY
+bBx
 bCv
 apG
 bFk
@@ -98065,11 +98031,11 @@ bqH
 bpX
 bmc
 buV
-jdH
+bws
 bqH
-rrL
 aJq
-aXf
+aJq
+byW
 bCv
 bAV
 bCv
@@ -98324,9 +98290,9 @@ bmf
 asD
 asD
 bqH
-aLY
-aLY
-bBx
+aJq
+aJq
+aXf
 bCv
 bDP
 bCv

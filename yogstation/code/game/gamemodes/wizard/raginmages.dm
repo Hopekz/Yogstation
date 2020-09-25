@@ -1,8 +1,6 @@
 /datum/game_mode/wizard/raginmages
 	name = "ragin' mages"
 	config_tag = "raginmages"
-	var/antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_RAGINMAGES
 	required_players = 40
 	announce_span = "userdanger"
 	announce_text = "There are many, many wizards attacking the station!\n\
@@ -50,7 +48,7 @@
 		wizards_alive++
 	if(!time_checked)
 		time_checked = world.time
-
+	
 	if (wizards_alive || bullshit_mode)
 		if(world.time > time_checked + time_check && (mages_made < max_mages))
 			time_checked = world.time
@@ -103,7 +101,7 @@
 		else
 			shuffle_inplace(candidates)
 			for(var/mob/i in candidates)
-				if(!i || !i.client)
+				if(!i || !i.client) 
 					continue //Dont bother removing them from the list since we only grab one wizard
 
 				theghost = i
@@ -132,9 +130,7 @@
 /datum/game_mode/wizard/raginmages/bullshit
 	name = "very ragin' bullshit mages"
 	config_tag = "veryraginbullshitmages"
-	antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_BULLSHITMAGES
-	required_players = 40
+	required_players = 20
 	bullshit_mode = 1
 	time_check = 250
 	spawn_delay_min = 50
