@@ -27,7 +27,7 @@
 		//doesn't have an object argument because this is "Stacking" with the animate call above
 		//3 billion% intentional
 
-/atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1, hold_seconds = 0, angle = 1, stay = FALSE, animation_curve = LINEAR_EASING, ease_in = FALSE, ease_out = FALSE, kick_x = 0, kick_y = 0, transform_sway_x = 0, transform_sway_y = 0 , reverse_interpolation = FALSE, interpolation_factor = 0.5, interpolated_animation_curve = ELASTIC_EASING, interpolation_easing = FALSE) // Hopek 2019. Updated 2020 
+/atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1, hold_seconds = 0, angle = 1, stay = FALSE, animation_curve = LINEAR_EASING, ease_in = FALSE, ease_out = FALSE, kick_x = 0, kick_y = 0, transform_sway_x = 0, transform_sway_y = 0 , reverse_interpolation = TRUE, interpolation_factor = 0.5, interpolated_animation_curve = ELASTIC_EASING, interpolation_easing = FALSE) // Hopek 2019. Updated 2020 
 	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
 	// Acceptable input for animation_curve: LINEAR_EASING, SINE_EASING, CIRCULAR_EASING, QUAD_EASING, CUBIC_EASING, BOUNCE_EASING, ELASTIC_EASING, BACK_EASING, JUMP_EASING 
 	// interpolated_animation_curve only applies to the reverse interpolated matrix when reverse_interpolation is set to TRUE
@@ -41,7 +41,7 @@
 				interpolated_animation_curve = EASE_IN | interpolated_animation_curve
 		if(ease_out)
 			animation_curve = animation_curve | EASE_OUT
-			if(interpolated_animation_curve interpolation_easing)
+			if(interpolated_animation_curve && interpolation_easing)
 				interpolated_animation_curve = interpolated_animation_curve | EASE_OUT
 
 	if(hold_seconds > 9999) // if you need to hold a dab for more than 2 hours intentionally let me know.
@@ -58,23 +58,26 @@
 		speed = rand(3,5)
 
 	// dab matrix here
+	message_admins("I build the matrix")
 	var/matrix/DAB_COMMENCE = matrix(transform)
 	var/matrix/DAB_RETURN = matrix(transform) // Our starting positon. We grab this before we touch it
+	var/matrix/DAB_INTERPOLATED = null // we don't waste processing on this unless it is needed
+	if(reverse_interpolation)
+		DAB_INTERPOLATED = matrix(transform)
 	if(kick_x != 0 || kick_y != 0) // we're kicking. This means the matrix now needs to adjust by x and y depending on kick
 		DAB_COMMENCE.Translate(x = kick_x, y = kick_y)
 	DAB_COMMENCE.Turn(angle) // dab angle to matrix
 	if(transform_sway_x || transform_sway_y)
 		DAB_COMMENCE.Scale(x = transform_sway_x, y = transform_sway_y)
 	if(reverse_interpolation) // we're interpolating. This means that we build a reverse dab under DAB_INTERPOLATED using the interpolation_factor as a split.
-		var/matrix/DAB_INTERPOLATED = DAB_RETURN
-		DAB_INTERPOLATED.Interpolate(Matrix2 = DAB_COMMENCE , t = interpolation_factor)
+		DAB_INTERPOLATED.Interpolate(DAB_COMMENCE, t = interpolation_factor)
 		DAB_INTERPOLATED.Invert()
 
 	// Dab animation 
 	animate(src, transform = DAB_COMMENCE, time = speed, loops , easing = animation_curve) // dab to hold angle
 	if(hold_seconds > 0)
 		sleep(hold_seconds) // time to hold the dab before going back
-	if(DAB_INTERPOLATED) // oh boy here we go you summoned the reverse matrix!
+	if(reverse_interpolation) // oh boy here we go you summoned the reverse matrix!
 		animate(src, transform = DAB_INTERPOLATED, time = speed, loops , easing = interpolated_animation_curve)
 	if(!stay) // if stay param is true dab doesn't return
 		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops, easing = animation_curve ) // reverse dab to starting position , slower
