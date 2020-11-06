@@ -18,7 +18,7 @@
 	var/item_recycle_sound = 'sound/items/welder.ogg'
 
 /obj/machinery/recycler/Initialize()
-	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE, MAT_PLASTIC), INFINITY, FALSE, null, null, null, TRUE)
+	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/plasma, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/plastic), INFINITY, FALSE, null, null, null, TRUE)
 	AddComponent(/datum/component/butchering, 1, amount_produced,amount_produced/5)
 	. = ..()
 	update_icon()
@@ -118,7 +118,7 @@
 		if(brain_holder)
 			emergency_stop(AM)
 		else if(isliving(AM))
-			if((obj_flags & EMAGGED)||((!allowed(AM))&&(!ishuman(AM))))
+			if((obj_flags & EMAGGED)||((!allowed(AM))&&(!ishuman(AM)))||!istype(AM, /mob/living/simple_animal/hostile/megafauna))
 				crush_living(AM)
 			else
 				emergency_stop(AM)

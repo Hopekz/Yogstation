@@ -18,7 +18,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	circuit = /obj/item/circuitboard/computer/card
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
-	var/authenticated = 0
 	var/mode = 0
 	var/printing = null
 	var/list/region_access = null
@@ -417,9 +416,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						updateUsrDialog()
 						return
 					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
-						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Job assignment aborted!</span>")
-						updateUsrDialog()
-						return
+						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!</span>")
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 
@@ -445,7 +442,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					else if(!isnull(newAge))
 						to_chat(usr, "<span class='alert'>Invalid age entered- age not updated.</span>")
 						updateUsrDialog()
-						
+
 					var/newName = reject_bad_name(href_list["reg"])
 					if(newName)
 						modify.registered_name = newName

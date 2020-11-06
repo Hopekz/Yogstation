@@ -415,9 +415,14 @@
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			if(bomb_armor < EXPLODE_GIB_THRESHOLD)	//gibs the mob if their bomb armor is lower than EXPLODE_GIB_THRESHOLD
-				for(var/I in contents)
-					var/atom/A = I
-					A.ex_act(severity)
+				for(var/thing in contents)
+					switch(severity)
+						if(EXPLODE_DEVASTATE)
+							SSexplosions.high_mov_atom += thing
+						if(EXPLODE_HEAVY)
+							SSexplosions.med_mov_atom += thing
+						if(EXPLODE_LIGHT)
+							SSexplosions.low_mov_atom += thing
 				gib()
 				return
 			else
@@ -645,11 +650,11 @@
 	//DAMAGE//
 	var/damagemod = (dna && dna.species) ? dna.species.acidmod : 1 // yogs - Old Plant People
 	for(var/obj/item/bodypart/affecting in damaged)
-		affecting.receive_damage(acidity, 2*acidity)
+		affecting.receive_damage(acidity*damagemod, 2*acidity*damagemod)
 
 		if(affecting.name == BODY_ZONE_HEAD)
-			if(prob(min(acidpwr*acid_volume/10, 90))) //Applies disfigurement
-				affecting.receive_damage(acidity, 2*acidity*damagemod) // yogs - Old Plant People
+			if(prob(min(acidpwr*acid_volume*damagemod/10, 90))) //Applies disfigurement
+				affecting.receive_damage(acidity*damagemod, 2*acidity*damagemod) // yogs - Old Plant People
 				emote("scream")
 				facial_hair_style = "Shaved"
 				hair_style = "Bald"
@@ -800,6 +805,10 @@
 				to_chat(src, "<span class='info'>You feel quite hungry.</span>")
 			if(0 to NUTRITION_LEVEL_STARVING)
 				to_chat(src, "<span class='danger'>You're starving!</span>")
+	if(dna.species.id == "skeleton")
+		var/obj/item/clothing/under/under = w_uniform
+		if((!under || under.adjusted) && (!wear_suit))
+			play_xylophone()
 
 	//Compiles then shows the list of damaged organs and broken organs
 	var/list/broken = list()
