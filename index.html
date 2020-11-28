@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(68 modules,
-    513/6234 macros, 8.2%)</aside></h3>
+    515/6254 macros, 8.2%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -137,7 +137,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(262 detailed/768 documented/22490 total, 3.4%)</aside></h3>
+<aside>(268 detailed/774 documented/22600 total, 3.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -299,9 +299,11 @@ Set our target list with the new set we've generated.</li>
     <li><a href="datum/controller/subsystem/materials.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;materials">Materials</a></li>
     <li><span class="no-substance">processing&#x2F;</span><a href="datum/controller/subsystem/processing/instruments.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;instruments">Instruments</a></li>
     <li><a href="datum/controller/subsystem/runechat.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;runechat">Runechat</a></li>
+    <li><a href="datum/controller/subsystem/shuttle.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;shuttle">Shuttle</a></li>
     <li><a href="datum/controller/subsystem/sounds.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sounds">Sounds</a></li>
     <li><a href="datum/controller/subsystem/sun.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sun">Sun</a></li>
     <li><a href="datum/controller/subsystem/tgui.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;tgui">tgui</a></li>
+    <li><a href="datum/controller/subsystem/ticker.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;ticker">Ticker</a></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/corporation.html" title="&#x2F;datum&#x2F;corporation">Corporations</a> - Companies with employees<ul class="index-tree">
@@ -403,10 +405,13 @@ Set our target list with the new set we've generated.</li>
     </ul></li>
     <li><a href="datum/donator_gear_resources.html" title="&#x2F;datum&#x2F;donator_gear_resources">Unique Donator Items Controller</a></li>
     <li class="has-children"><a href="datum/dynamic_ruleset.html" title="&#x2F;datum&#x2F;dynamic_ruleset">dynamic_ruleset</a><ul class="index-tree">
+    <li><span class="no-substance">latejoin&#x2F;</span><a href="datum/dynamic_ruleset/latejoin/provocateur.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;latejoin&#x2F;provocateur">Provocateur</a></li>
     <li class="has-children"><a href="datum/dynamic_ruleset/midround.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;midround">midround</a><ul class="index-tree">
     <li><a href="datum/dynamic_ruleset/midround/from_ghosts.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;midround&#x2F;from_ghosts">from_ghosts</a></li>
     </ul></li>
-    <li><a href="datum/dynamic_ruleset/roundstart.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart">roundstart</a></li>
+    <li class="has-children"><a href="datum/dynamic_ruleset/roundstart.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart">roundstart</a><ul class="index-tree">
+    <li><a href="datum/dynamic_ruleset/roundstart/revs.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart&#x2F;revs">Revolution</a></li>
+    </ul></li>
     </ul></li>
     <li><span class="no-substance">effect_system&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
 just pass in the object to attach it to in set_up
@@ -1042,7 +1047,10 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><a href="obj/item/storage/pod.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;pod">emergency space suits</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;syndicatedetonator">big red button</span> - Syndicate Detonator (aka the big red button)</li>
-    <li><span class="no-substance">toy&#x2F;cards&#x2F;</span><a href="obj/item/toy/cards/cardhand.html" title="&#x2F;obj&#x2F;item&#x2F;toy&#x2F;cards&#x2F;cardhand">hand of cards</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;toy">toy</span><ul class="index-tree">
+    <li><span class="no-substance">cards&#x2F;</span><a href="obj/item/toy/cards/cardhand.html" title="&#x2F;obj&#x2F;item&#x2F;toy&#x2F;cards&#x2F;cardhand">hand of cards</a></li>
+    <li><span class="no-substance">plush&#x2F;</span><a href="obj/item/toy/plush/mothplushie.html" title="&#x2F;obj&#x2F;item&#x2F;toy&#x2F;plush&#x2F;mothplushie">moth plushie</a></li>
+    </ul></li>
     <li class="has-children"><a href="obj/item/twohanded.html" title="&#x2F;obj&#x2F;item&#x2F;twohanded">twohanded</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;twohanded&#x2F;offhand">offhand</span> - OFFHAND</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;twohanded&#x2F;required">required</span> - Two hand required objects<ul class="index-tree">
@@ -1067,6 +1075,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><a href="obj/machinery/computer/aifixer.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;aifixer">\improper AI system integrity restorer</a></li>
     <li><a href="obj/machinery/computer/bsa_control.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;bsa_control">bluespace artillery control</a></li>
     <li><a href="obj/machinery/computer/camera_advanced.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;camera_advanced">advanced camera console</a></li>
+    <li><a href="obj/machinery/computer/communications.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;communications">communications console</a></li>
     <li><a href="obj/machinery/computer/scan_consolenew.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;scan_consolenew">DNA Console</a></li>
     <li><a href="obj/machinery/computer/security.html" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;security">security camera console</a></li>
     <li><span class="no-substance">shuttle&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;shuttle&#x2F;mining">mining shuttle console</span> - Shuttle Computer</li>
@@ -1209,7 +1218,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/Hopekz/Yogstation/tree/d3fe54db9baf9dbb4f8c512bc66fefff2522da2e">d3fe54d</a>
+    <a href="https://github.com/Hopekz/Yogstation/tree/dc917a1afc46400f09768773520aedcef4119081">dc917a1</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
