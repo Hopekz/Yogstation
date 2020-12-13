@@ -34,7 +34,7 @@
 /datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method=TOUCH, reac_volume)
 	if(!..())
 		return
-	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_RADIMMUNE) || HAS_TRAIT(M, TRAIT_BADDNA))
+	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
 		M.randmuti()
@@ -482,6 +482,12 @@
 	color = "#00B4FF"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 1.25
+
+/datum/reagent/toxin/cyanide/reaction_turf(turf/T, reac_volume)
+	if(istype(T, /turf/open/floor/carpet))
+		var/turf/open/floor/F = T
+		F.ChangeTurf(/turf/open/floor/carpet/cyan, flags = CHANGETURF_INHERIT_AIR)
+	..()
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/carbon/M)
 	if(prob(5))
