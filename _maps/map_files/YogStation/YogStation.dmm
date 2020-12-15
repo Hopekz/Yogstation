@@ -34048,15 +34048,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/aft)
-"cEL" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/storage/box/bodybags,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "cFl" = (
 /turf/closed/wall,
 /area/maintenance/solars/port/aft)
@@ -38657,33 +38648,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/lawoffice)
-"fLN" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/obj/machinery/door/airlock/medical/glass{
-	id_tag = "GeneticsDoor";
-	name = "Genetics";
-	req_access_txt = "5; 68"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "fMt" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -52084,6 +52048,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"pEC" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
+	},
+/obj/machinery/door/airlock/medical{
+	id_tag = "GeneticsDoor";
+	name = "Genetics";
+	req_access_txt = "5; 68"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "pFh" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 8
@@ -59047,6 +59038,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"uDm" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/bodybags,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "uDB" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -105769,7 +105771,7 @@ vSo
 qgg
 uHA
 ruc
-fLN
+pEC
 ruc
 fQz
 ruc
@@ -111151,7 +111153,7 @@ bfX
 bfV
 fGE
 taB
-cEL
+uDm
 idl
 bov
 bpU
